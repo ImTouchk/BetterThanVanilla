@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>dev.mugur</groupId>
-    <artifactId>siscverse</artifactId>
+    <artifactId>btv</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
 
-    <name>siscverse</name>
+    <name>BetterThanVanilla</name>
 
     <properties>
         <java.version>21</java.version>

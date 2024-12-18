@@ -1,8 +1,7 @@
-package dev.mugur.siscverse.misc
+package dev.mugur.btv.misc
 
 import com.mojang.brigadier.tree.LiteralCommandNode
-import dev.mugur.siscverse.towns.TownCommands.Companion.acquire
-import dev.mugur.siscverse.utils.ChatHelper
+import dev.mugur.btv.utils.ChatHelper
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import io.papermc.paper.command.brigadier.Commands
 

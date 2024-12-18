@@ -1,4 +1,4 @@
-package dev.mugur.siscverse.towns
+package dev.mugur.btv.towns
 
 import com.sk89q.worldedit.bukkit.BukkitAdapter
 import com.sk89q.worldedit.math.BlockVector3
@@ -7,12 +7,11 @@ import com.sk89q.worldguard.protection.flags.Flags
 import com.sk89q.worldguard.protection.flags.StateFlag
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion
 import com.sk89q.worldguard.protection.regions.ProtectedRegion
-import dev.mugur.siscverse.Main
-import dev.mugur.siscverse.utils.Database
+import dev.mugur.btv.Main
+import dev.mugur.btv.utils.Database
 import org.bukkit.Chunk
 import org.bukkit.NamespacedKey
 import org.bukkit.persistence.PersistentDataType
-import java.sql.SQLType
 
 class PlotGuard {
     companion object {

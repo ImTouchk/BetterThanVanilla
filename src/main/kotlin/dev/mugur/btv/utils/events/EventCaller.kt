@@ -1,4 +1,4 @@
-package dev.mugur.siscverse.utils.events
+package dev.mugur.btv.utils.events
 
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority

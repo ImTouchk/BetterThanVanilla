@@ -1,7 +1,6 @@
-package dev.mugur.siscverse.utils
+package dev.mugur.btv.utils
 
-import dev.mugur.siscverse.Main
-import org.bukkit.plugin.Plugin
+import dev.mugur.btv.Main
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement

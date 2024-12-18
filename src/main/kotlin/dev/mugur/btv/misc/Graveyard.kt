@@ -1,10 +1,10 @@
-package dev.mugur.siscverse.misc
+package dev.mugur.btv.misc
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.BoolArgumentType
-import dev.mugur.siscverse.Main
-import dev.mugur.siscverse.utils.ChatCommand
-import dev.mugur.siscverse.utils.ChatHelper
+import dev.mugur.btv.Main
+import dev.mugur.btv.utils.ChatCommand
+import dev.mugur.btv.utils.ChatHelper
 import org.bukkit.Bukkit
 import org.bukkit.Location
 import org.bukkit.Material
@@ -15,7 +15,6 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.PlayerInteractEvent
-import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 import org.bukkit.util.Vector
 import java.util.*

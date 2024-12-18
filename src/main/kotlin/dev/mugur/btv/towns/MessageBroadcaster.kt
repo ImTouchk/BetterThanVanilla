@@ -1,8 +1,8 @@
-package dev.mugur.siscverse.towns
+package dev.mugur.btv.towns
 
-import dev.mugur.siscverse.Main
-import dev.mugur.siscverse.utils.ChatHelper
-import dev.mugur.siscverse.utils.Database
+import dev.mugur.btv.Main
+import dev.mugur.btv.utils.ChatHelper
+import dev.mugur.btv.utils.Database
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.NamespacedKey

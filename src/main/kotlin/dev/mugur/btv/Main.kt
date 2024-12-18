@@ -1,13 +1,13 @@
-package dev.mugur.siscverse
+package dev.mugur.btv
 
-import dev.mugur.siscverse.misc.ChatPrefix
-import dev.mugur.siscverse.misc.EndDisabler
-import dev.mugur.siscverse.misc.Graveyard
-import dev.mugur.siscverse.misc.MiscCommands
-import dev.mugur.siscverse.towns.*
-import dev.mugur.siscverse.utils.ChatHelper
-import dev.mugur.siscverse.utils.Database
-import dev.mugur.siscverse.utils.events.EventCaller
+import dev.mugur.btv.misc.ChatPrefix
+import dev.mugur.btv.misc.EndDisabler
+import dev.mugur.btv.misc.Graveyard
+import dev.mugur.btv.misc.MiscCommands
+import dev.mugur.btv.towns.*
+import dev.mugur.btv.utils.ChatHelper
+import dev.mugur.btv.utils.Database
+import dev.mugur.btv.utils.events.EventCaller
 import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents
 import net.kyori.adventure.text.Component
 import org.bukkit.plugin.java.JavaPlugin

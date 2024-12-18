@@ -1,16 +1,13 @@
-package dev.mugur.siscverse.towns
+package dev.mugur.btv.towns
 
-import dev.mugur.siscverse.Main
-import dev.mugur.siscverse.utils.ChatHelper
-import org.bukkit.Chunk
+import dev.mugur.btv.Main
+import dev.mugur.btv.utils.ChatHelper
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
-import org.bukkit.event.player.PlayerJoinEvent
 import org.bukkit.event.player.PlayerMoveEvent
 import org.bukkit.persistence.PersistentDataType
-import java.util.*
 
 class PlotChecker : Listener {
     private val autobuyKey = NamespacedKey(Main.instance!!, "plot-autobuy")

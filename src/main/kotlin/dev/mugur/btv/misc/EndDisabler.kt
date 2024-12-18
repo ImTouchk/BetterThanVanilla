@@ -1,10 +1,10 @@
-package dev.mugur.siscverse.misc
+package dev.mugur.btv.misc
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.BoolArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import dev.mugur.siscverse.Main
-import dev.mugur.siscverse.utils.ChatHelper
+import dev.mugur.btv.Main
+import dev.mugur.btv.utils.ChatHelper
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import io.papermc.paper.command.brigadier.Commands
 import org.bukkit.event.EventHandler

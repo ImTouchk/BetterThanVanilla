@@ -1,7 +1,7 @@
-package dev.mugur.siscverse.towns
+package dev.mugur.btv.towns
 
-import dev.mugur.siscverse.Main
-import dev.mugur.siscverse.utils.Database
+import dev.mugur.btv.Main
+import dev.mugur.btv.utils.Database
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.persistence.PersistentDataType

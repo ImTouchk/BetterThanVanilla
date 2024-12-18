@@ -1,15 +1,14 @@
-package dev.mugur.siscverse.towns
+package dev.mugur.btv.towns
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.arguments.BoolArgumentType
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
-import com.mojang.brigadier.tree.CommandNode
 import com.mojang.brigadier.tree.LiteralCommandNode
-import dev.mugur.siscverse.Main
-import dev.mugur.siscverse.utils.ChatCommand
-import dev.mugur.siscverse.utils.ChatHelper
+import dev.mugur.btv.Main
+import dev.mugur.btv.utils.ChatCommand
+import dev.mugur.btv.utils.ChatHelper
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import io.papermc.paper.command.brigadier.Commands
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes
@@ -18,7 +17,6 @@ import net.kyori.adventure.key.Key
 import net.kyori.adventure.sound.Sound
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.format.TextColor
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.NamespacedKey

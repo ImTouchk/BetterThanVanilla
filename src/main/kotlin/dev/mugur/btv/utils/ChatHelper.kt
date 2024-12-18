@@ -1,12 +1,11 @@
-package dev.mugur.siscverse.utils
+package dev.mugur.btv.utils
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.context.CommandContext
-import dev.mugur.siscverse.Main
+import dev.mugur.btv.Main
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.minimessage.MiniMessage
 import org.bukkit.Bukkit
 import org.bukkit.entity.Player

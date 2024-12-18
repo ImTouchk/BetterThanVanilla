@@ -1,14 +1,11 @@
-package dev.mugur.siscverse.misc
+package dev.mugur.btv.misc
 
-import dev.mugur.siscverse.towns.TownManager
+import dev.mugur.btv.towns.TownManager
 import io.papermc.paper.chat.ChatRenderer
 import io.papermc.paper.event.player.AsyncChatEvent
 import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
-import net.kyori.adventure.text.TextComponent
 import net.kyori.adventure.text.format.NamedTextColor
-import net.kyori.adventure.text.format.Style
-import net.kyori.adventure.text.format.TextColor
 import net.kyori.adventure.text.format.TextDecoration
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
