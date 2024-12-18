@@ -1,0 +1,6 @@
+name: siscverse
+version: '0.1'
+main: dev.mugur.siscverse.Main
+api-version: '1.20.6'
+author: mugur
+depend: [WorldGuard]

@@ -1,0 +1,160 @@
+<?xml version="1.0" ?>
+<messages>
+    <message>
+        <id>town.player.missed_messages</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> You have <color:aqua>%d</color> new messages.]]></value>
+    </message>
+    <message>
+        <id>town.player.invitation</id>
+        <value><![CDATA[
+        <color:aqua><bold>TOWN ></bold></color> You have been invited to join town <color:aqua>%s</color>!<newline>
+        <color:green><bold><click:run_command:/town join %s>[ACCEPT]</click></bold></color> <color:red><bold><click:run_command:/town decline %s>[DECLINE]</click></bold></color><newline>
+        ]]></value>
+    </message>
+    <message>
+        <id>town.player.joined</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Player <color:aqua>%s</color> joined <color:aqua>%s</color>!]]></value>
+    </message>
+    <message>
+        <id>town.player.kicked</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> Player <color:red>%s</color> was kicked out of <color:red>%s</color>!]]></value>
+    </message>
+    <message>
+        <id>town.player.left</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Player <color:aqua>%s</color> left <color:aqua>%s</color>!]]></value>
+    </message>
+    <message>
+        <id>town.player.kicked</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Player <color:aqua>%s</color> was kicked out of <color:aqua>%s</color>!]]></value>
+    </message>
+    <message>
+        <id>town.area.entered</id>
+        <value><![CDATA[You are now entering <color:%s>%s</color>]]></value>
+    </message>
+    <message>
+        <id>town.help</id>
+        <value>
+        <![CDATA[
+        <color:aqua><bold>---- TOWN COMMANDS (/town, /plot) ----</bold></color><newline>
+        <color:aqua><click:suggest_command:/town info>/town info</click></color> - Shows information about your current town<newline>
+        <color:aqua><click:suggest_command:/town create>/town create [name]</click></color> - Creates a new town with name <color:aqua>[name]</color><newline>
+        <color:aqua><click:suggest_command:/town donate>/town donate [amount]</click></color> - Donates <color:aqua>[amount]</color> of diamonds to the town<newline>
+        <color:aqua><click:suggest_command:/town color>/town color [new_color]</click></color> - Changes the display color of the town<newline>
+        <color:aqua><click:suggest_command:/plot acquire>/plot acquire</click></color> - Tries to acquire current chunk<newline>
+        <color:aqua><click:suggest_command:/plot autobuy>/plot autobuy [enable/disable]</click></color> - Enables or disables auto purchasing of unclaimed chunks<newline>
+        <color:aqua><click:suggest_command:/plot toggle_alert>/plot toggle_alert [never/always/changed]</click></color> - Toggles the 'entered new chunk' message
+        ]]>
+        </value>
+    </message>
+    <message>
+        <id>town.help.create</id>
+        <value><![CDATA[<color:aqua>/town create [name]</color> - Creates a new town named <color:aqua>[name]</color>.]]></value>
+    </message>
+    <message>
+        <id>town.help.info</id>
+        <value><![CDATA[<color:aqua>/town info [name]</color> - Shows relevant information about town <color:aqua>[name]</color>.]]></value>
+    </message>
+    <message>
+        <id>plot.help.toggle_alert</id>
+        <value><![CDATA[
+        <color:aqua>/town toggle_alert [always/never/changed]</color> - Toggles the 'entered new chunk' message.<newline>
+        <color:aqua><bold>changed</bold></color> - only shows the message when you enter a chunk claimed by another town.
+        ]]></value>
+    </message>
+    <message>
+        <id>town.info</id>
+        <value>
+        <![CDATA[<color:aqua><bold>-- %s</bold> (Mayor: %s, Founder: %s)</color><newline>
+        <color:aqua>Money:</color> %d<newline>
+        <color:aqua>Next plot:</color> %d<newline>
+        <color:aqua>Members:</color> %d<newline>
+        ]]>
+        </value>
+    </message>
+    <!-- Success messages -->
+    <message>
+        <id>plot.success.autobuy_enabled</id>
+        <value><![CDATA[<color:aqua><bold>PLOT ></bold></color> Plot automatic buying <color:green>enabled</color>.]]></value>
+    </message>
+    <message>
+        <id>plot.success.autobuy_disabled</id>
+        <value><![CDATA[<color:aqua><bold>PLOT ></bold></color> Plot automatic buying <color:red>disabled</color>.]]></value>
+    </message>
+    <message>
+        <id>plot.success.toggled_alert</id>
+        <value><![CDATA[<color:aqua><bold>PLOT ></bold></color> Option <color:aqua>toggle_alert</color> changed to <color:aqua>%s</color>.]]></value>
+    </message>
+    <message>
+        <id>plot.success.toggled_display</id>
+        <value><![CDATA[<color:aqua><bold>PLOT ></bold></color> Option <color:aqua>toggle_display</color> changed to <color:aqua>%s</color>.]]></value>
+    </message>
+    <message>
+        <id>town.success.invited</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> You have invited player <color:aqua>%s</color> to join <color:aqua>%s</color>.]]></value>
+    </message>
+    <message>
+        <id>town.success.created</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Town <color:aqua>%s</color> was created by <color:aqua>%s</color>!]]></value>
+    </message>
+    <message>
+        <id>town.success.donated</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Player <color:aqua>%s</color> donated <color:aqua>%d diamonds</color> to the town!]]></value>
+    </message>
+    <message>
+        <id>town.success.plot_acquired</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> New plot was acquired by <color:aqua>%s</color>!]]></value>
+    </message>
+    <message>
+        <id>town.success.color_changed</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Town color changed successfully.]]></value>
+    </message>
+    <message>
+        <id>town.success.invite_declined</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Join invitation from town <color:aqua>%s</color> declined.]]></value>
+    </message>
+    <!-- Error messages -->
+    <message>
+        <id>town.error.invalid_invite</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> Invitation expired or does not exist.]]></value>
+    </message>
+    <message>
+        <id>town.error.invalid_player</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> Player <color:red>%s</color> is an invalid target or does not exist.]]></value>
+    </message>
+    <message>
+        <id>town.error.already_mayor</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> You are already the mayor of another town.]]></value>
+    </message>
+    <message>
+        <id>town.error.insufficient_permissions</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> You do not have the required permissions to execute this command.]]></value>
+    </message>
+    <message>
+        <id>town.error.not_in_a_town</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> You are not part of a town.]]></value>
+    </message>
+    <message>
+        <id>town.error.plot_already_occupied</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> Plot is already occupied by <color:red>%s</color>.]]></value>
+    </message>
+    <message>
+        <id>town.error.insufficient_funds</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> You do not have enough diamonds.]]></value>
+    </message>
+    <message>
+        <id>town.error.name_not_found</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> Name <color:red>%s</color> does not exist.]]></value>
+    </message>
+    <message>
+        <id>town.error.name_already_exists</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> There already exists a town named <color:red>%s</color>.]]></value>
+    </message>
+    <message>
+        <id>town.error.invalid_color</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> The provided value is not a valid color.]]></value>
+    </message>
+    <message>
+        <id>town.error.no_invites</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> You do not currently have any town invitations.]]></value>
+    </message>
+</messages>

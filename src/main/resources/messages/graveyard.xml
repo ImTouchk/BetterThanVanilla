@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<messages>
+    <message>
+        <id>graveyard.items_saved</id>
+        <value><![CDATA[Your death loot can be claimed at <color:green><bold>[x: %d, y: %d, z: %d]</bold></color>.]]></value>
+    </message>
+    <message>
+        <id>graveyard.kill_reward</id>
+        <value><![CDATA[%s's death loot can be claimed at <color:green><bold>[x: %d, y: %d, z: %d]</bold></color>.]]></value>
+    </message>
+    <message>
+        <id>graveyard.success.enabled</id>
+        <value><![CDATA[<color:green><bold>!! IMPORTANT ></bold></color> Graveyard module has been <color:green><bold>enabled</bold></color>.]]></value>
+    </message>
+    <message>
+        <id>graveyard.success.disabled</id>
+        <value><![CDATA[<color:red><bold>!! IMPORTANT ></bold></color> Graveyard module has been <color:red><bold>disabled</bold></color>.]]></value>
+    </message>
+    <message>
+        <id>graveyard.success.claimed</id>
+        <value><![CDATA[%s's death loot <color:green>claimed</color>.]]></value>
+    </message>
+    <message>
+        <id>graveyard.error.no_safe_spot</id>
+        <value><![CDATA[<color:red><bold>ERROR ></bold></color> Couldn't find a safe spot for your death loot.]]></value>
+    </message>
+    <message>
+        <id>graveyard.error.insufficient_permissions</id>
+        <value><![CDATA[<color:red><bold>ERROR ></bold></color> You can't claim this death loot, as it belongs to <color:red>%s</color>.]]></value>
+    </message>
+</messages>

@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<messages>
+    <message>
+        <id>misc.help</id>
+        <value><![CDATA[
+        <color:#9403fc><bold>---- MISC COMMANDS (/misc) ----</bold></color> <newline>
+        <color:#9403fc><click:suggest_command:/misc enable_end>/misc enable_end</click></color> - Toggles access to the end dimension (requires <color:#9403fc>OP</color>)
+        ]]>
+        </value>
+    </message>
+    <message>
+        <id>misc.error.not_op</id>
+        <value><![CDATA[<color:red><bold>ERROR ></bold></color> You do not have the required permissions to run this command.]]></value>
+    </message>
+    <message>
+        <id>misc.end_disabled</id>
+        <value>
+            <![CDATA[The end dimension is currently <color:red><bold>disabled</bold></color>.]]>
+        </value>
+    </message>
+    <message>
+        <id>misc.success.end_disabled</id>
+        <value><![CDATA[<color:red><bold>!! IMPORTANT ></bold></color> The end dimension has been <color:red><bold>DISABLED</bold></color>.]]></value>
+    </message>
+    <message>
+        <id>misc.success.end_enabled</id>
+        <value><![CDATA[<color:green><bold>!! IMPORTANT ></bold></color> The end dimension has been <color:green><bold>ENABLED</bold></color>.]]></value>
+    </message>
+</messages>

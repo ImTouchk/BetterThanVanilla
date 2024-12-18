@@ -1,0 +1,4 @@
+misc:
+  enable-graveyard: true
+  disable-end: false
+  economy-item: "diamond"
