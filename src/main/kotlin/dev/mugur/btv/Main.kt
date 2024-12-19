@@ -5,6 +5,7 @@ import dev.mugur.btv.misc.EndDisabler
 import dev.mugur.btv.misc.Graveyard
 import dev.mugur.btv.misc.MiscCommands
 import dev.mugur.btv.towns.*
+import dev.mugur.btv.towns.interact.TownObjectListener
 import dev.mugur.btv.utils.ChatHelper
 import dev.mugur.btv.utils.Database
 import dev.mugur.btv.utils.events.EventCaller
@@ -37,6 +38,7 @@ class Main : JavaPlugin() {
 
         val pluginManager = server.pluginManager
         pluginManager.registerEvents(EventCaller(), this)
+        pluginManager.registerEvents(TownObjectListener(), this)
         pluginManager.registerEvents(PlotChecker(), this)
         pluginManager.registerEvents(PlotDisplayer(), this)
         pluginManager.registerEvents(MessageBroadcaster(), this)

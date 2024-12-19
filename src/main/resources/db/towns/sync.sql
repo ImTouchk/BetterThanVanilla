@@ -5,7 +5,8 @@ CREATE TABLE IF NOT EXISTS "town" (
     mayor VARCHAR(36) UNIQUE,
     money INTEGER NOT NULL DEFAULT 0,
     plots INTEGER NOT NULL DEFAULT 0,
-    color VARCHAR(12) NOT NULL DEFAULT '#55FFFF'
+    color VARCHAR(12) NOT NULL DEFAULT '#55FFFF',
+    active INTEGER NOT NULL DEFAULT 1
 );
 
 CREATE TABLE IF NOT EXISTS "town_member" (
@@ -30,4 +31,16 @@ CREATE TABLE IF NOT EXISTS "town_message" (
     message TEXT NOT NULL,
     created_at INTEGER DEFAULT (UNIXEPOCH()),
     FOREIGN KEY (town_id) REFERENCES town(id)
+);
+
+CREATE TABLE IF NOT EXISTS "town_object" (
+    id INTEGER PRIMARY KEY,
+    town_id VARCHAR(36) NOT NULL,
+    type INTEGER NOT NULL,
+    world VARCHAR(36) NOT NULL,
+    x INTEGER NOT NULL,
+    y INTEGER NOT NULL,
+    z INTEGER NOT NULL,
+    FOREIGN KEY (town_id) REFERENCES town (id),
+    CONSTRAINT unique_pos UNIQUE(world, x, y, z)
 );

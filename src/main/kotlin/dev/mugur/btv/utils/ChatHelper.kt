@@ -19,6 +19,7 @@ class ChatHelper {
 
         fun init() {
             loadResource("messages/town.xml")
+            loadResource("messages/town/objects.xml")
             loadResource("messages/misc.xml")
             loadResource("messages/graveyard.xml")
 

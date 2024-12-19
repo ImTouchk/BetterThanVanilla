@@ -34,6 +34,10 @@ class TownManager {
             return town.mayor == player.uniqueId
         }
 
+        fun getActiveTowns(): List<Town> {
+            return towns.filter { it.active }
+        }
+
         fun getTownOfPlayer(player: Player): Town? {
             return towns.find { it.players.contains(player.uniqueId) }
         }
@@ -55,6 +59,10 @@ class TownManager {
                 val town = Town(res)
                 towns.add(town)
             }
+
+            Main.instance!!
+                .componentLogger
+                .info("Loaded ${towns.size} towns")
         }
     }
 }

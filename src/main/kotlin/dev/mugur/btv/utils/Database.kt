@@ -1,11 +1,7 @@
 package dev.mugur.btv.utils
 
 import dev.mugur.btv.Main
-import java.sql.Connection
-import java.sql.DriverManager
-import java.sql.PreparedStatement
-import java.sql.ResultSet
-import java.sql.SQLException
+import java.sql.*
 
 class Database {
     companion object {
@@ -13,7 +9,7 @@ class Database {
 
         fun init() {
             Class.forName("org.sqlite.JDBC")
-            this.connection = DriverManager.getConnection("jdbc:sqlite:plugins/siscverse/database.db")
+            this.connection = DriverManager.getConnection("jdbc:sqlite:plugins/BetterThanVanilla/database.db")
         }
 
         fun sync() {
@@ -50,7 +46,7 @@ class Database {
         }
 
         fun prepare(sql: String): PreparedStatement {
-            return connection.prepareStatement(sql)
+            return connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
         }
 
         fun runFile(res: String) {

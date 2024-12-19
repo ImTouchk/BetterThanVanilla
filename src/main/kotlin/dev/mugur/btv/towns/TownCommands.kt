@@ -7,8 +7,10 @@ import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.LiteralArgumentBuilder
 import com.mojang.brigadier.tree.LiteralCommandNode
 import dev.mugur.btv.Main
+import dev.mugur.btv.towns.interact.TownObjectType
 import dev.mugur.btv.utils.ChatCommand
 import dev.mugur.btv.utils.ChatHelper
+import dev.mugur.btv.utils.Misc
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import io.papermc.paper.command.brigadier.Commands
 import io.papermc.paper.command.brigadier.argument.ArgumentTypes
@@ -26,29 +28,18 @@ import org.bukkit.persistence.PersistentDataType
 @Suppress("UnstableApiUsage")
 class TownCommands {
     companion object {
-        private fun tryTakeCurrency(player: Player, amount: Int): Boolean {
-            val currency = Main
-                .instance!!
-                .config
-                .getString("misc.economy-item")!!
-                .uppercase()
+        private fun leave(): ChatCommand {
+            return ChatCommand("leave")
+                .requirePlayerSender()
+                .executes { ctx ->
+                    val player = ctx.source.sender as Player
+                    val town = TownManager.getTownOfPlayer(player)
+                        ?: return@executes ChatHelper.sendMessage(ctx, "town.error.not_in_a_town")
 
-            Main.instance?.componentLogger?.info(currency)
+                    town.removePlayer(player, "town.player.left")
 
-            val inventory = player.inventory
-            if(!inventory.contains(Material.getMaterial(currency)!!, amount))
-                return false
-
-            var remainingDiamonds = amount
-            while(remainingDiamonds > 0) {
-                val diamondSlot = inventory.first(Material.getMaterial(currency)!!)
-                val stack = inventory.getItem(diamondSlot)
-                val existing = stack?.amount!!
-                val toRemove = existing.coerceAtMost(remainingDiamonds)
-                stack.amount = existing - toRemove
-                remainingDiamonds -= toRemove
-            }
-            return true
+                    Command.SINGLE_SUCCESS
+                }
         }
 
         private fun decline(): LiteralArgumentBuilder<CommandSourceStack> {
@@ -89,14 +80,21 @@ class TownCommands {
                         val town = TownManager.getTownByName(townName)
                             ?: return@executes ChatHelper.sendMessage(ctx, "town.error.name_not_found", townName)
 
+                        var hasValidInvite = true
+
                         val player = ctx.source.sender as Player
                         val pdc = player.persistentDataContainer
                         val key = NamespacedKey(Main.instance!!, town.name)
                         val timestamp = pdc.get(key, PersistentDataType.LONG)
-                            ?: return@executes ChatHelper.sendMessage(ctx, "town.error.invalid_invite")
+                        if(timestamp == null)
+                            hasValidInvite = false
+                        else {
+                            val current = System.currentTimeMillis()
+                            if (current - timestamp > 1000 * 60 * 15)
+                                hasValidInvite = false
+                        }
 
-                        val current = System.currentTimeMillis()
-                        if (current - timestamp > 1000 * 60 * 15)
+                        if(!hasValidInvite && !player.isOp)
                             return@executes ChatHelper.sendMessage(ctx, "town.error.invalid_invite")
 
                         TownManager
@@ -175,7 +173,7 @@ class TownCommands {
                             ?: return@executes ChatHelper.sendMessage(ctx, "town.error.not_in_a_town")
 
                         val amount = IntegerArgumentType.getInteger(ctx, "amount")
-                        if(!tryTakeCurrency(player, amount)) {
+                        if(!Misc.tryTakeCurrency(player, amount)) {
                             return@executes ChatHelper.sendMessage(ctx, "town.error.insufficient_funds")
                         }
                         town.money += amount
@@ -234,6 +232,8 @@ class TownCommands {
                             return@executes ChatHelper.sendMessage(ctx, "town.error.name_already_exists", name)
 
                         Town(name, player)
+                        player.inventory.addItem(TownObjectType.DonateChest.toItemStack())
+
                         ChatHelper.broadcastMessage("town.success.created", name, player.name)
 
                         return@executes Command.SINGLE_SUCCESS
@@ -300,6 +300,7 @@ class TownCommands {
                 .then(invite())
                 .then(join())
                 .then(decline())
+                .then(leave().build())
                 .then(info())
                 .then(color())
                 .executes { ctx -> ChatHelper.sendMessage(ctx, "town.help") }
@@ -328,7 +329,14 @@ class TownCommands {
                     town.plots++
                     town.broadcast(ChatHelper.getMessage("town.success.plot_acquired", player.name)!!)
 
-                    val render = PlotDisplayer.render(player, player.chunk)
+                    val render = Misc.displayChunkBorder(
+                        player,
+                        player.chunk,
+                        Misc.getColoredBlock(town.color),
+                        player.y,
+                        gap = 2
+                    )
+
                     val scheduler = Bukkit.getScheduler()
                     scheduler.runTaskLater(Main.instance!!, Runnable {
                         render.forEach { entity -> entity.remove() }

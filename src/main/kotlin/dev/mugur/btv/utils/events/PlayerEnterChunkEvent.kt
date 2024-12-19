@@ -10,7 +10,8 @@ class PlayerEnterChunkEvent(
     player: Player,
     from: Location,
     to: Location,
-    val chunk: Chunk
+    val chunk: Chunk,
+    val prev: Chunk
 ) : PlayerMoveEvent(player, from, to) {
     companion object {
         val HANDLER_LIST = HandlerList()

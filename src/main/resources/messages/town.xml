@@ -93,6 +93,10 @@
         <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> You have invited player <color:aqua>%s</color> to join <color:aqua>%s</color>.]]></value>
     </message>
     <message>
+        <id>town.abandoned</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> Town <color:red>%s</color> was abandoned.]]></value>
+    </message>
+    <message>
         <id>town.success.created</id>
         <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Town <color:aqua>%s</color> was created by <color:aqua>%s</color>!]]></value>
     </message>

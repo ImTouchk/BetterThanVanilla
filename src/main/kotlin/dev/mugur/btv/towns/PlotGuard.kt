@@ -50,7 +50,7 @@ class PlotGuard {
             updateWorldGuardRegion(chunk)
         }
 
-        private fun updateWorldGuardRegion(chunk: Chunk) {
+        fun updateWorldGuardRegion(chunk: Chunk) {
             val owner = getChunkOwner(chunk)
 
             if(owner == null) {
@@ -73,7 +73,7 @@ class PlotGuard {
             }
         }
 
-        private fun getWorldGuardRegion(chunk: Chunk): ProtectedRegion {
+        fun getWorldGuardRegion(chunk: Chunk): ProtectedRegion {
             val regionId = "plot-${chunk.x}-${chunk.z}-${chunk.world.name}"
             val container = WorldGuard
                 .getInstance()

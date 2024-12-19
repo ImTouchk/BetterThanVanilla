@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<messages>
+    <message>
+        <id>town.objects.donate_chest.title</id>
+        <value><![CDATA[<color:aqua>Place donations chest</color>]]></value>
+    </message>
+    <message>
+        <id>town.objects.donate_chest.desc</id>
+        <value>
+        <![CDATA[
+        <color:aqua>Donation chest</color><newline>
+        Town members can donate money by right-clicking this chest with the desired
+        amount of <color:aqua><em>diamonds</em></color> in their hand.<newline>
+        <color:gray><em>Can be removed afterwards.</em></color>
+        ]]>
+        </value>
+    </message>
+</messages>

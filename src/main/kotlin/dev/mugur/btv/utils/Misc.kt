@@ -16,6 +16,35 @@ import org.joml.Vector3f
 
 class Misc {
     companion object {
+        fun getCurrencyItem(): Material {
+            return Material.getMaterial(
+                Main
+                    .instance!!
+                    .config
+                    .getString("misc.economy-item")!!
+                    .uppercase()
+            )!!
+        }
+
+        fun tryTakeCurrency(player: Player, amount: Int): Boolean {
+            val currency = getCurrencyItem()
+
+            val inventory = player.inventory
+            if(!inventory.contains(currency, amount))
+                return false
+
+            var remainingDiamonds = amount
+            while(remainingDiamonds > 0) {
+                val diamondSlot = inventory.first(currency)
+                val stack = inventory.getItem(diamondSlot)
+                val existing = stack?.amount!!
+                val toRemove = existing.coerceAtMost(remainingDiamonds)
+                stack.amount = existing - toRemove
+                remainingDiamonds -= toRemove
+            }
+            return true
+        }
+
         fun getChunksInArea(chunk: Chunk, area: Int = 3): List<Chunk> {
             val x = chunk.x
             val z = chunk.z

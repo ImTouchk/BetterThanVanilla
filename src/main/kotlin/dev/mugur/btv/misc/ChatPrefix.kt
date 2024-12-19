@@ -34,14 +34,15 @@ class ChatPrefix : Listener, ChatRenderer {
                     .color(NamedTextColor.RED)
             )
 
+        finalText = finalText.append(
+            Component
+                .text("<")
+                .color(NamedTextColor.WHITE)
+                .decoration(TextDecoration.BOLD, false)
+        )
+
         val town = TownManager.getTownOfPlayer(source)
         if(town != null) {
-            finalText = finalText.append(
-                Component
-                    .text("<")
-                    .color(NamedTextColor.WHITE)
-                    .decoration(TextDecoration.BOLD, false)
-            )
             finalText = finalText.append(
                 Component
                     .text("${town.name} ")
@@ -49,6 +50,7 @@ class ChatPrefix : Listener, ChatRenderer {
                     .decoration(TextDecoration.BOLD, false)
             )
         }
+
         finalText = finalText.append(
             sourceDisplayName
                 .color(NamedTextColor.WHITE)

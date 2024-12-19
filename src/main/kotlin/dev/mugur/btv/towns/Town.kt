@@ -1,5 +1,6 @@
 package dev.mugur.btv.towns
 
+import dev.mugur.btv.towns.interact.TownObject
 import dev.mugur.btv.utils.ChatHelper
 import dev.mugur.btv.utils.Database
 import net.kyori.adventure.text.Component
@@ -23,7 +24,9 @@ class Town(
     money: Int,
     plots: Int,
     color: TextColor,
-    val players: MutableList<UUID>
+    val players: MutableList<UUID>,
+    val objects: MutableList<TownObject>,
+    active: Boolean
 ) {
     var mayor: UUID? = mayor
         set(value) {
@@ -46,7 +49,15 @@ class Town(
     var color: TextColor = color
         set(value) {
             field = value
-            Database.run("UPDATE TOWN SET color = '${value.asHexString()}' WHERE id = '$id'")
+            Database.run("UPDATE town SET color = '${value.asHexString()}' WHERE id = '$id'")
+        }
+
+    var active: Boolean = active
+        set(value) {
+            field = value
+            Database.run("UPDATE town SET active = '${if(value) 1 else 0}' WHERE id = '$id';")
+            if(!value)
+                ChatHelper.broadcastMessage("town.abandoned", name)
         }
 
     fun getCostOfNewPlot(): Int {
@@ -54,6 +65,9 @@ class Town(
         // price is inversely proportional to number of town members (more members -> cheaper) to avoid wealth bubbles
         // ln (plotCount^2 / members) * baseCost^2
         // use desmos to visualise graph
+        if(players.size == 0)
+            return -1
+
         val baseCost = 3
         val baseCostSq = baseCost * baseCost
         val function = ln((plots * plots / players.size).toDouble()) * baseCostSq
@@ -75,14 +89,26 @@ class Town(
     }
 
     fun removePlayer(player: Player, reasonMessage: String) {
+        if(mayor == player.uniqueId) {
+            mayor = null
+        }
+
         Database.run("DELETE FROM \"town_member\" WHERE player_id = '${player.uniqueId}';")
         getScoreboardTeam()
             .removePlayer(player)
 
         broadcast(ChatHelper.getMessage(reasonMessage, player.name, name), important = true)
+
+        players.remove(player.uniqueId)
+
+        if(players.size == 0)
+            active = false
     }
 
     fun addPlayer(player: Player) {
+        if(players.size == 0)
+            active = true
+
         val stmt = Database.prepare(
             "REPLACE INTO \"town_member\" (player_id, town_id) VALUES (?, ?);"
         )
@@ -91,9 +117,9 @@ class Town(
         stmt.setString(2, id.toString())
         stmt.execute()
 
+        players.add(player.uniqueId)
         broadcast(ChatHelper.getMessage("town.player.joined", player.name, name), important = true)
 
-        players.add(player.uniqueId)
         getScoreboardTeam()
             .addEntity(player)
 
@@ -103,12 +129,35 @@ class Town(
         id = UUID.fromString(query.getString("id")),
         name = query.getString("name"),
         founder = UUID.fromString(query.getString("founder"))!!,
-        mayor = UUID.fromString(query.getString("mayor")) ?: null,
+        mayor =
+            if(query.getObject("mayor") != null)
+                UUID.fromString(query.getString("mayor"))
+            else
+                null,
         money = query.getInt("money"),
         plots = query.getInt("plots"),
         color = TextColor.fromCSSHexString(query.getString("color"))!!,
-        players = mutableListOf()
+        players = mutableListOf(),
+        objects = mutableListOf(),
+        active = query.getBoolean("active")
     ) {
+        TownManager.towns.add(this)
+
+        loadMembers()
+        loadObjects()
+    }
+
+    private fun loadObjects() {
+        val stmt = Database.prepare("SELECT * FROM town_object WHERE town_id = ?;")
+        stmt.setString(1, id.toString())
+
+        val list = stmt.executeQuery()
+        while(list.next()) {
+            objects.add(TownObject(list))
+        }
+    }
+
+    private fun loadMembers() {
         val stmt = Database.prepare("SELECT * FROM \"town_member\" WHERE town_id = ?;")
         stmt.setString(1, id.toString())
 
@@ -121,8 +170,6 @@ class Town(
             getScoreboardTeam()
                 .addPlayer(Bukkit.getOfflinePlayer(players[players.size - 1]))
         }
-
-        TownManager.towns.add(this)
     }
 
     constructor(name: String, founder: Player) : this(
@@ -133,7 +180,9 @@ class Town(
         money = 0,
         plots = 0,
         color = NamedTextColor.AQUA,
-        players = mutableListOf()
+        players = mutableListOf(),
+        objects = mutableListOf(),
+        active = true
     ) {
         val stmt = Database.prepare("INSERT INTO town (id, name, founder, mayor) VALUES (?, ?, ?, ?);")!!
         stmt.setString(1, id.toString())

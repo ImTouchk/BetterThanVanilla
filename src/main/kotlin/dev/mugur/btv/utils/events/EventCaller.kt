@@ -11,7 +11,7 @@ class EventCaller : Listener {
         val previous = e.from.chunk
         val next = e.to.chunk
         if(previous != next) {
-            val chunkEvent = PlayerEnterChunkEvent(e.player, e.from, e.to, e.to.chunk)
+            val chunkEvent = PlayerEnterChunkEvent(e.player, e.from, e.to, e.to.chunk, e.from.chunk)
             chunkEvent.callEvent()
         }
     }
