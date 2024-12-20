@@ -84,7 +84,7 @@ class TownCommands {
 
                         val player = ctx.source.sender as Player
                         val pdc = player.persistentDataContainer
-                        val key = NamespacedKey(Main.instance!!, town.name)
+                        val key = NamespacedKey(Main.instance!!, town.id.toString())
                         val timestamp = pdc.get(key, PersistentDataType.LONG)
                         if(timestamp == null)
                             hasValidInvite = false
@@ -128,8 +128,8 @@ class TownCommands {
                         if(target == player || TownManager.getTownOfPlayer(target)?.id == town.id)
                             return@executes ChatHelper.sendMessage(ctx, "town.error.invalid_player", target.name)
 
-                        val pdc = player.persistentDataContainer
-                        val key = NamespacedKey(Main.instance!!, town.name)
+                        val pdc = target.persistentDataContainer
+                        val key = NamespacedKey(Main.instance!!, town.id.toString())
                         pdc.set(key, PersistentDataType.LONG, System.currentTimeMillis())
 
                         ChatHelper.sendMessage(target, "town.invited", town.name, town.name, town.name)
