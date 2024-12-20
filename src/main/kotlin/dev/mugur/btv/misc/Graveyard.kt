@@ -112,6 +112,7 @@ class Graveyard : Listener {
                 else
                     owner.name
             )
+            e.isCancelled = true
             return
         }
 
