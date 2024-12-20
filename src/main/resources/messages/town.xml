@@ -5,7 +5,7 @@
         <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> You have <color:aqua>%d</color> new messages.]]></value>
     </message>
     <message>
-        <id>town.player.invitation</id>
+        <id>town.invited</id>
         <value><![CDATA[
         <color:aqua><bold>TOWN ></bold></color> You have been invited to join town <color:aqua>%s</color>!<newline>
         <color:green><bold><click:run_command:/town join %s>[ACCEPT]</click></bold></color> <color:red><bold><click:run_command:/town decline %s>[DECLINE]</click></bold></color><newline>
