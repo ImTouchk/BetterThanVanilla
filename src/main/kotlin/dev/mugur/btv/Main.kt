@@ -1,9 +1,6 @@
 package dev.mugur.btv
 
-import dev.mugur.btv.misc.ChatPrefix
-import dev.mugur.btv.misc.EndDisabler
-import dev.mugur.btv.misc.Graveyard
-import dev.mugur.btv.misc.MiscCommands
+import dev.mugur.btv.misc.*
 import dev.mugur.btv.towns.*
 import dev.mugur.btv.towns.interact.TownObjectListener
 import dev.mugur.btv.utils.ChatHelper
@@ -34,6 +31,7 @@ class Main : JavaPlugin() {
             registrar.register(TownCommands.town())
             registrar.register(TownCommands.plot())
             registrar.register(MiscCommands.root())
+            registrar.register(DepartmentCommands.department().build())
         }
 
         val pluginManager = server.pluginManager

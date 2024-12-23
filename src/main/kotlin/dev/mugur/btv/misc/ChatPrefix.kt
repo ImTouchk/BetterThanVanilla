@@ -41,6 +41,16 @@ class ChatPrefix : Listener, ChatRenderer {
                 .decoration(TextDecoration.BOLD, false)
         )
 
+        val dept = source.getDepartment()
+        if(dept != Department.None) {
+            finalText = finalText.append(
+                Component
+                    .text("${dept.name} ")
+                    .color(dept.color)
+                    .decoration(TextDecoration.BOLD, true)
+            )
+        }
+
         val town = TownManager.getTownOfPlayer(source)
         if(town != null) {
             finalText = finalText.append(

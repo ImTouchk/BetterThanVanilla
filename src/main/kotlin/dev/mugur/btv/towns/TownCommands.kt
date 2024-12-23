@@ -410,7 +410,7 @@ class TownCommands {
                 .executes { ctx ->
                     val player = ctx.source.sender as Player
                     val pdc = player.persistentDataContainer
-                    val key = NamespacedKey(Main.instance!!, "plot-autobuy")
+                    val key = NamespacedKey(Main.instance!!, "prefs.plot.autobuy")
                     val enabled = BoolArgumentType.getBool(ctx, "enabled")
                     pdc.set(key, PersistentDataType.BOOLEAN, enabled)
 
@@ -432,7 +432,7 @@ class TownCommands {
                 .then(toggle_alert())
                 .then(toggle_display())
                 .then(toggle_autobuy())
-                .executes { ctx -> ChatHelper.sendMessage(ctx, "town.info") }
+                .executes { ctx -> ChatHelper.sendMessage(ctx, "town.help") }
                 .build()
         }
     }

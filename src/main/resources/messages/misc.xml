@@ -4,7 +4,7 @@
         <id>misc.help</id>
         <value><![CDATA[
         <color:#9403fc><bold>---- MISC COMMANDS (/misc) ----</bold></color> <newline>
-        <color:#9403fc><click:suggest_command:/misc enable_end>/misc enable_end</click></color> - Toggles access to the end dimension (requires <color:#9403fc>OP</color>)
+        <color:#9403fc><click:suggest_command:/misc enable_end>/misc enable_end</click></color> - Toggles access to the end dimension (requires <color:#9403fc>OP</color>)<newline>
         ]]>
         </value>
     </message>
@@ -25,5 +25,9 @@
     <message>
         <id>misc.success.end_enabled</id>
         <value><![CDATA[<color:green><bold>!! IMPORTANT ></bold></color> The end dimension has been <color:green><bold>ENABLED</bold></color>.]]></value>
+    </message>
+    <message>
+        <id>misc.success.nickname_set</id>
+        <value><![CDATA[<color:green><bold>SUCCESS ></bold></color> Nickname changed to %s.]]></value>
     </message>
 </messages>
