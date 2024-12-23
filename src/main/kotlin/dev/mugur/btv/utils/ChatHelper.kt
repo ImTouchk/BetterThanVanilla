@@ -22,6 +22,7 @@ class ChatHelper {
             loadResource("messages/town/objects.xml")
             loadResource("messages/misc.xml")
             loadResource("messages/graveyard.xml")
+            loadResource("messages/dept.xml")
 
             Main
                 .instance
@@ -70,14 +71,30 @@ class ChatHelper {
 
         fun getMessage(name: String, vararg args: Any?): Component {
             val raw = getRawMessage(name)
+                ?.replace("<newline>\\s+","<newline>")
                 ?.replace("\\s+".toRegex(), " ")
                 ?.replace("\n+".toRegex(), "")
-                ?: return Component.text(name).color(NamedTextColor.DARK_RED)
 
-            val formatted = String.format(raw, *args)
-            return MiniMessage
-                .miniMessage()
-                .deserialize(formatted)
+            if(raw == null) {
+                Main.instance!!
+                    .componentLogger
+                    .error("Tried to retrieve unknown chat message '$name'.")
+
+                return Component
+                    .text("Internal error: $name")
+                    .color(NamedTextColor.DARK_RED)
+            }
+            try {
+                val formatted = String.format(raw, *args)
+                return MiniMessage
+                    .miniMessage()
+                    .deserialize(formatted)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                return Component
+                    .text("Internal error: $name")
+                    .color(NamedTextColor.DARK_RED)
+            }
         }
 
         private fun getRawMessage(name: String): String? {

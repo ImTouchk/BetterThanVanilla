@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<messages>
+    <message>
+        <id>dept.error.invalid_name</id>
+        <value><![CDATA[
+        <color:red><bold>ERROR ></bold></color> Invalid option <color:red>%s</color>.<newline>
+        <color:gray>Possible values:</color>
+        <color:blue><em>EDU</em></color>,
+        <color:dark_purple><em>FR</em></color>,
+        <color:gold><em>HR</em></color>,
+        <color:red><em>IP</em></color>,
+        <color:green><em>IT</em></color>,
+        <color:gray><em>None</em></color>.
+        ]]></value>
+    </message>
+    <message>
+        <id>dept.success.changed</id>
+        <value><![CDATA[<color:green><bold>SUCCESS ></bold></color> Department changed to <color:%s>%s</color>.]]></value>
+    </message>
+
+</messages>
