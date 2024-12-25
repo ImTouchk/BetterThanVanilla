@@ -106,8 +106,10 @@ class Town(
     }
 
     fun addPlayer(player: Player) {
-        if(players.size == 0)
+        if(players.size == 0) {
             active = true
+            mayor = player.uniqueId
+        }
 
         val stmt = Database.prepare(
             "REPLACE INTO \"town_member\" (player_id, town_id) VALUES (?, ?);"

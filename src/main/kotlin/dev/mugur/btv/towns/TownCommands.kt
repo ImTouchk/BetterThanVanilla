@@ -94,6 +94,9 @@ class TownCommands {
                                 hasValidInvite = false
                         }
 
+                        if(town.players.size == 0 && town.founder == player.uniqueId)
+                            hasValidInvite = true
+
                         if(!hasValidInvite && !player.isOp)
                             return@executes ChatHelper.sendMessage(ctx, "town.error.invalid_invite")
 
@@ -303,6 +306,7 @@ class TownCommands {
                 .then(leave().build())
                 .then(info())
                 .then(color())
+                .then(AdminCommands.modify().build())
                 .executes { ctx -> ChatHelper.sendMessage(ctx, "town.help") }
                 .build()
         }
