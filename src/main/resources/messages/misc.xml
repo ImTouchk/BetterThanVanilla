@@ -9,6 +9,10 @@
         </value>
     </message>
     <message>
+        <id>misc.error.nothing_to_track</id>
+        <value><![CDATA[<color:red><bold>ERROR ></bold></color> Nothing to track.]]></value>
+    </message>
+    <message>
         <id>misc.error.not_op</id>
         <value><![CDATA[<color:red><bold>ERROR ></bold></color> You do not have the required permissions to run this command.]]></value>
     </message>

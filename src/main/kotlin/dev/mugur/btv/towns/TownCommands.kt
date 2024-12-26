@@ -20,10 +20,12 @@ import net.kyori.adventure.sound.Sound
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import org.bukkit.Bukkit
+import org.bukkit.Location
 import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.entity.Player
 import org.bukkit.persistence.PersistentDataType
+import kotlin.math.roundToInt
 
 @Suppress("UnstableApiUsage")
 class TownCommands {
@@ -294,6 +296,34 @@ class TownCommands {
                 }
         }
 
+        private fun track(): ChatCommand {
+            return ChatCommand("track")
+                .requirePlayerSender()
+                .argument("town", StringArgumentType.string())
+                .executes { ctx ->
+                    val player = ctx.source.sender as Player
+                    val townName = StringArgumentType.getString(ctx, "town")
+                    val town = TownManager.getTownByName(townName)
+                        ?: return@executes ChatHelper.sendMessage(ctx, "town.error.name_not_found", townName)
+
+                    val chunks = town.getClaimedPlots()
+                    if(chunks.isEmpty())
+                        return@executes ChatHelper.sendMessage(ctx, "misc.error.nothing_to_track")
+
+                    val key = Misc.getPlayerPref(player, "town.tracker.selected_chunk", PersistentDataType.INTEGER)
+                    var idx = if (key == null) 0 else key + 1
+                    if(idx >= chunks.size)
+                        idx = chunks.size - 1
+
+                    val chunk = chunks[idx]
+                    val block = Location(chunk.world, chunk.x * 16.0, 0.0, chunk.z * 16.0)
+                    Misc.setPlayerPref(player, "town.tracker.selected_chunk", PersistentDataType.INTEGER, idx)
+                    player.compassTarget = block
+
+                    ChatHelper.sendMessage(ctx, "town.success.tracking_chunk", town.name, block.distance(player.location).roundToInt())
+                }
+        }
+
         fun town(): LiteralCommandNode<CommandSourceStack> {
             return Commands
                 .literal("town")
@@ -306,6 +336,7 @@ class TownCommands {
                 .then(leave().build())
                 .then(info())
                 .then(color())
+                .then(track().build())
                 .then(AdminCommands.modify().build())
                 .executes { ctx -> ChatHelper.sendMessage(ctx, "town.help") }
                 .build()

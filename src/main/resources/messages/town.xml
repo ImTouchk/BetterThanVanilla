@@ -116,6 +116,10 @@
         <id>town.success.invite_declined</id>
         <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Join invitation from town <color:aqua>%s</color> declined.]]></value>
     </message>
+    <message>
+        <id>town.success.tracking_chunk</id>
+        <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Tracking chunk of town <color:aqua>%s</color> [distance: <color:aqua>%d blocks</color>].]]></value>
+    </message>
     <!-- Error messages -->
     <message>
         <id>town.error.invalid_invite</id>

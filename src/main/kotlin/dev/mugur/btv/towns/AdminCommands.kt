@@ -19,6 +19,9 @@ class AdminCommands {
                     val town = TownManager.getTownByName(townName)
                         ?: return@executes ChatHelper.sendMessage(ctx, "town.error.name_not_found", townName)
 
+                    if(town.mayor != player.uniqueId && !player.isOp)
+                        return@executes ChatHelper.sendMessage(ctx, "misc.error.not_op")
+
                     val resolver = ctx.getArgument("player", PlayerSelectorArgumentResolver::class.java)
                     val target = resolver.resolve(ctx.source)[0]
                     val targetTown = TownManager.getTownOfPlayer(target)
@@ -33,7 +36,6 @@ class AdminCommands {
 
         fun modify(): ChatCommand {
             return ChatCommand("modify")
-                .require({ sender -> sender.isOp }, "misc.error.not_op")
                 .argument("town", StringArgumentType.string())
                 .then(mayor())
         }
