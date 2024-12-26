@@ -21,7 +21,7 @@ class DepartmentCommands {
                     val player = ctx.source.sender as Player
                     val name = StringArgumentType.getString(ctx, "name")
                     val dept = Department.getFromName(name)
-                        ?: return@executes ChatHelper.sendMessage(ctx, "dept.error.invalid_name")
+                        ?: return@executes ChatHelper.sendMessage(ctx, "dept.error.invalid_name", name)
 
                     player.setDepartment(dept)
                     ChatHelper.sendMessage(ctx, "dept.success.changed", dept.color.asHexString(), name.uppercase())

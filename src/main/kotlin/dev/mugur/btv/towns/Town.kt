@@ -233,3 +233,16 @@ class Town(
         return team
     }
 }
+
+fun Player.getTown(): Town? {
+    return TownManager.getTownOfPlayer(this)
+}
+
+fun Player.setTown(town: Town) {
+    getTown()?.removePlayer(this, "town.player.left")
+    town.addPlayer(this)
+}
+
+fun Player.isMayor(): Boolean {
+    return getTown()?.mayor == uniqueId
+}

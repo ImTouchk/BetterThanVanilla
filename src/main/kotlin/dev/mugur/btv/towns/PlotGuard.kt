@@ -68,6 +68,10 @@ class PlotGuard {
             val region = getWorldGuardRegion(chunk)
             region.members.clear()
 
+            region.flags.clear()
+            region.setFlag(Flags.PVP, StateFlag.State.DENY)
+            region.setFlag(Flags.TNT, StateFlag.State.ALLOW)
+
             owner.players.forEach { member ->
                 region.members.addPlayer(member)
             }
@@ -87,7 +91,6 @@ class PlotGuard {
                 val max = BlockVector3.at(chunk.x * 16 + 16, 500, chunk.z * 16 + 16)
                 region = ProtectedCuboidRegion(regionId, min, max)
                 region.setFlag(Flags.PVP, StateFlag.State.DENY)
-                region.setFlag(Flags.USE, StateFlag.State.DENY)
                 region.setFlag(Flags.TNT, StateFlag.State.ALLOW)
                 regions?.addRegion(region)
             }
