@@ -15,6 +15,7 @@ import org.bukkit.event.EventPriority
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.PlayerInteractEvent
+import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 import org.bukkit.util.Vector
 import java.util.*
@@ -162,10 +163,20 @@ class Graveyard : Listener {
         }
         chest.update()
 
-        for(item in e.drops)
+        val toRemove = mutableListOf<ItemStack>()
+        for(i in e.drops.indices) {
+            if(i > 26)
+                continue
+
+            val item = e.drops[i]
             chest.blockInventory.addItem(item.clone())
 
-        e.drops.clear()
+            toRemove.add(item)
+        }
+
+        for(item in toRemove)
+            e.drops.remove(item)
+        
         e.droppedExp = 0
 
         ChatHelper.sendMessage(
