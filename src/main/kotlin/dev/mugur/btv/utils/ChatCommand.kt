@@ -5,6 +5,8 @@ import com.mojang.brigadier.arguments.ArgumentType
 import com.mojang.brigadier.builder.ArgumentBuilder
 import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.tree.LiteralCommandNode
+import dev.mugur.btv.towns.TownManager
+import dev.mugur.btv.towns.getTown
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import io.papermc.paper.command.brigadier.Commands
 import org.bukkit.command.CommandSender
@@ -62,6 +64,31 @@ class ChatCommand(name: String) {
 
     fun subcommand(command: ChatCommand): ChatCommand {
         subcommands.add(command)
+        return this
+    }
+
+    fun requireOp(): ChatCommand {
+        require({ sender -> sender.isOp }, "misc.error.not_op")
+        return this
+    }
+
+    fun requireTownMayor(): ChatCommand {
+        requirePlayerSender()
+        require({ sender ->
+            val player = sender as Player
+            val town = player.getTown() ?: return@require false
+
+            return@require town.mayor == player.uniqueId
+        }, "town.error.insufficient_permissions")
+        return this
+    }
+
+    fun requireTownMembership(): ChatCommand {
+        requirePlayerSender()
+        require({ sender ->
+            val player = sender as Player
+            return@require player.getTown() != null
+        }, "town.error.not_in_a_town")
         return this
     }
 

@@ -205,7 +205,7 @@ class Town(
         val res = stmt.executeQuery()
         while(res.next()) {
             val worldId = res.getString("world_id")
-            val world = Bukkit.getWorld(worldId)!!
+            val world = Bukkit.getWorld(UUID.fromString(worldId))!!
             val x = res.getInt("chunk_x")
             val z = res.getInt("chunk_z")
             list.add(world.getChunkAt(x, z))

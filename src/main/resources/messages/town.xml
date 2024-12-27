@@ -101,6 +101,10 @@
         <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Town <color:aqua>%s</color> was created by <color:aqua>%s</color>!]]></value>
     </message>
     <message>
+        <id>town.success.deleted</id>
+        <value><![CDATA[<color:red><bold>TOWN ></bold></color> Town <color:red>%s</color> was deleted by op <color:red>%s</color>!]]></value>
+    </message>
+    <message>
         <id>town.success.donated</id>
         <value><![CDATA[<color:aqua><bold>TOWN ></bold></color> Player <color:aqua>%s</color> donated <color:aqua>%d diamonds</color> to the town!]]></value>
     </message>

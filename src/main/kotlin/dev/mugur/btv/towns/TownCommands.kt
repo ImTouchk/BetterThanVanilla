@@ -251,11 +251,9 @@ class TownCommands {
             return Commands
                 .literal("info")
                 .then(Commands
-                    .argument("name", StringArgumentType.string())
+                    .argument("name", TownArgument())
                     .executes { ctx ->
-                        val name = StringArgumentType.getString(ctx, "name")
-                        val town = TownManager.getTownByName(name)
-                            ?: return@executes ChatHelper.sendMessage(ctx, "town.error.name_not_found", name)
+                        val town = ctx.getArgument("town", Town::class.java)
 
                         ChatHelper.sendMessage(
                             ctx,
@@ -299,12 +297,10 @@ class TownCommands {
         private fun track(): ChatCommand {
             return ChatCommand("track")
                 .requirePlayerSender()
-                .argument("town", StringArgumentType.string())
+                .argument("town", TownArgument())
                 .executes { ctx ->
                     val player = ctx.source.sender as Player
-                    val townName = StringArgumentType.getString(ctx, "town")
-                    val town = TownManager.getTownByName(townName)
-                        ?: return@executes ChatHelper.sendMessage(ctx, "town.error.name_not_found", townName)
+                    val town = ctx.getArgument("town", Town::class.java)
 
                     val chunks = town.getClaimedPlots()
                     if(chunks.isEmpty())
@@ -458,6 +454,21 @@ class TownCommands {
                     )
                 }
                 .build()
+        }
+
+        private fun sell(): ChatCommand {
+            return ChatCommand("sell")
+                .requireTownMembership()
+                .argument("town", TownArgument())
+                .argument("price", IntegerArgumentType.integer(1, 100))
+                .executes { ctx ->
+                    val player = ctx.source.sender as Player
+                    val town = ctx.getArgument("town", Town::class.java)
+                    val price = IntegerArgumentType.getInteger(ctx, "price")
+                    
+
+                    Command.SINGLE_SUCCESS
+                }
         }
 
         fun plot(): LiteralCommandNode<CommandSourceStack> {

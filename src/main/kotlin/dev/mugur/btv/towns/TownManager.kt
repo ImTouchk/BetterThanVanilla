@@ -51,6 +51,11 @@ class TownManager {
             return towns.find { it.name == name }
         }
 
+        fun delete(town: Town) {
+            towns.remove(town)
+
+        }
+
         fun init() {
             towns.clear()
 
