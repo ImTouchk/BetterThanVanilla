@@ -7,6 +7,7 @@ import net.kyori.adventure.audience.Audience
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.format.NamedTextColor
 import net.kyori.adventure.text.format.TextDecoration
+import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -67,7 +68,15 @@ class ChatPrefix : Listener, ChatRenderer {
                 .decoration(TextDecoration.BOLD, false)
         )
         finalText = finalText.append(Component.text("> "))
-        finalText = finalText.append(message)
+
+        val msg = PlainTextComponentSerializer
+            .plainText()
+            .serialize(message)
+
+        finalText = if(msg.startsWith('>'))
+            finalText.append(message.color(NamedTextColor.GREEN))
+        else
+            finalText.append(message)
         return finalText
     }
 }
