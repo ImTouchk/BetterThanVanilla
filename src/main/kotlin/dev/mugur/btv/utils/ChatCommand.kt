@@ -7,6 +7,7 @@ import com.mojang.brigadier.context.CommandContext
 import com.mojang.brigadier.tree.LiteralCommandNode
 import dev.mugur.btv.towns.TownManager
 import dev.mugur.btv.towns.getTown
+import dev.mugur.btv.towns.isMayor
 import io.papermc.paper.command.brigadier.CommandSourceStack
 import io.papermc.paper.command.brigadier.Commands
 import org.bukkit.command.CommandSender
@@ -76,9 +77,7 @@ class ChatCommand(name: String) {
         requirePlayerSender()
         require({ sender ->
             val player = sender as Player
-            val town = player.getTown() ?: return@require false
-
-            return@require town.mayor == player.uniqueId
+            return@require player.isMayor() || player.isOp
         }, "town.error.insufficient_permissions")
         return this
     }

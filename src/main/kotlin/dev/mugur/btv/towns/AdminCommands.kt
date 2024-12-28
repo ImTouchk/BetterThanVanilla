@@ -10,7 +10,6 @@ import org.bukkit.entity.Player
 
 class AdminCommands {
     companion object {
-
         private fun mayor(): ChatCommand {
             return ChatCommand("mayor")
                 .argument("player", ArgumentTypes.player())
@@ -52,7 +51,7 @@ class AdminCommands {
         fun modify(): ChatCommand {
             return ChatCommand("modify")
                 .argument("town", TownArgument())
-                .then(mayor())
+                .subcommand(mayor())
         }
     }
 }

@@ -27,7 +27,7 @@ class MiscCommands {
         fun root(): LiteralCommandNode<CommandSourceStack> {
             return Commands
                 .literal("misc")
-                .then(EndDisabler.command())
+                .then(EndDisabler.command().build())
                 .then(Graveyard.command().build())
                 .then(nickname().build())
                 .executes { ctx -> ChatHelper.sendMessage(ctx, "misc.help") }

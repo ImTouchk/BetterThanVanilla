@@ -1,5 +1,5 @@
 name: BetterThanVanilla
-version: '0.1.5'
+version: '0.1.6'
 main: dev.mugur.btv.Main
 api-version: '1.20.6'
 author: mugur

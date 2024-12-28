@@ -247,50 +247,27 @@ class TownCommands {
                 .executes { ctx -> ChatHelper.sendMessage(ctx, "town.help.create") }
         }
 
-        private fun info(): LiteralArgumentBuilder<CommandSourceStack> {
-            return Commands
-                .literal("info")
-                .then(Commands
-                    .argument("name", TownArgument())
-                    .executes { ctx ->
-                        val town = ctx.getArgument("town", Town::class.java)
-
-                        ChatHelper.sendMessage(
-                            ctx,
-                            "town.info",
-                            town.name,
-                            if(town.mayor != null)
-                                Bukkit.getOfflinePlayer(town.mayor!!).name
-                            else
-                                "No-one",
-                            Bukkit.getOfflinePlayer(town.founder).name,
-                            town.money,
-                            town.getCostOfNewPlot(),
-                            town.players.size
-                        )
-                    })
+        private fun info(): ChatCommand {
+            return ChatCommand("info")
+                .argument("name", TownArgument())
                 .executes { ctx ->
-                    if (ctx.source.sender is Player) {
-                        val player = ctx.source.sender as Player
-                        val town = TownManager.getTownOfPlayer(player)
-                        if(town != null) {
-                            ChatHelper.sendMessage(
-                                ctx,
-                                "town.info",
-                                town.name,
-                                if(town.mayor != null)
-                                    Bukkit.getOfflinePlayer(town.mayor!!).name
-                                else
-                                    "No-one",
-                                Bukkit.getOfflinePlayer(town.founder).name,
-                                town.money,
-                                town.getCostOfNewPlot(),
-                                town.players.size
-                            )
-                            return@executes Command.SINGLE_SUCCESS
-                        }
+                    val town = ctx.getArgument("name", Town::class.java)
+
+                    ChatHelper.sendMessage(ctx, "town.info.header",
+                        town.name, Bukkit.getOfflinePlayer(town.founder).name,
+                        if(town.mayor != null) Bukkit.getOfflinePlayer(town.mayor!!).name else "No-one",
+                        town.money,
+                        town.plots,
+                        town.getCostOfNewPlot(),
+                        town.players.size
+                    )
+
+                    for(i in town.players.indices) {
+                        val player = town.players[i]
+                        ChatHelper.sendMessage(ctx, "town.info.member", i, Bukkit.getOfflinePlayer(player)!!.name)
                     }
-                    ChatHelper.sendMessage(ctx, "town.help.info")
+
+                    return@executes Command.SINGLE_SUCCESS
                 }
         }
 
@@ -330,7 +307,7 @@ class TownCommands {
                 .then(join())
                 .then(decline())
                 .then(leave().build())
-                .then(info())
+                .then(info().build())
                 .then(color())
                 .then(track().build())
                 .then(AdminCommands.modify().build())

@@ -62,14 +62,21 @@
         ]]></value>
     </message>
     <message>
-        <id>town.info</id>
+        <id>town.info.header</id>
         <value>
-        <![CDATA[<color:aqua><bold>-- %s</bold> (Mayor: %s, Founder: %s)</color><newline>
-        <color:aqua>Money:</color> %d<newline>
-        <color:aqua>Next plot:</color> %d<newline>
-        <color:aqua>Members:</color> %d<newline>
+        <![CDATA[<color:aqua><bold>-- %s</bold> (Founder: %s)</color><newline>
+        <color:aqua>Mayor:</color> %s<newline>
+        <color:aqua>Money:</color> %d diamonds<newline>
+        <color:aqua>Plots:</color> %d<newline>
+        <color:aqua>Cost for next plot:</color> %d<newline>
+        <color:aqua>-----------</color><newline>
+        <color:aqua><bold>-- Members (%d):</bold></color><newline>
         ]]>
         </value>
+    </message>
+    <message>
+        <id>town.info.member</id>
+        <value><![CDATA[<color:aqua>%d.</color> %s]]></value>
     </message>
     <!-- Success messages -->
     <message>
